@@ -10,7 +10,7 @@ public class HomeController {
  
     @GetMapping("/")
     public String home() {
-        return "Welcome to Spring Boot WAR Deployment on EC2!";
+        return "Welcome to Spring Boot WAR Deployment on EC2!, I hope you are doing well";
     }
  
     @GetMapping("/hello")

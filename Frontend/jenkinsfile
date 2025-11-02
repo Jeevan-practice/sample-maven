@@ -1,0 +1,16 @@
+pipeline{
+    agent any
+    stages{
+        stage("checkout Frontend code"){
+            steps{
+              sh ' git clone https://github.com/Jeevan-practice/sample-maven.git'   
+            }
+        }
+        stage('upload thhe new index file to s3 bucket'){
+            steps{
+                sh 'aws s3 cp ./sample-maven/Frontend/index.html s3://deploy-frontend-3101'
+            }
+        }
+       
+    }
+}

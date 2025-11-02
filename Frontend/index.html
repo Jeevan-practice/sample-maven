@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Spring Boot EC2 Test</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background:  #00ffab;
+      padding: 20px;
+      text-align: center;
+    }
+    h1 { color: #333; }
+    button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    #output {
+      margin-top: 20px;
+      background: white;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      min-height: 40px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Spring Boot WAR Deployed on EC2</h1>
+  <p>Click the button to call your backend API</p>
+  <button onclick="callApi()">Call /hello API</button>
+ 
+  <div id="output"></div>
+ 
+  <script>
+    async function callApi() {
+      const output = document.getElementById("output");
+      output.innerHTML = "Loading...";
+ 
+      try {
+        // 🔽 Replace <EC2-PUBLIC-IP> with your actual EC2 public IP
+        const response = await fetch("http://18.216.55.168:8080/");
+        if (!response.ok) throw new Error("API returned error");
+        const text = await response.text();
+        output.innerHTML = `<b>Response:</b> ${text}`;
+      } catch (err) {
+        output.innerHTML = `<span style='color:red;'>Error: ${err.message}</span>`;
+      }
+    }
+  </script>
+</body>
+</html>
